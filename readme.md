@@ -37,7 +37,7 @@ Before completing, the generator will prompt you:`Would you like to set up Activ
 
 This will result in the following structure:
 
-![](tree.png)
+![Sinatra Turntable Directory Structure](tree.png =100x)
 
 Once the generator finishes, test your app by running `$ rackup`. You should see the familiar Hello World! on `localhost:9292`.
 
