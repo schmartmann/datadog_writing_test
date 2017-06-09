@@ -22,7 +22,7 @@ With just a few commands, we can bootstrap a full web app with data-persistence.
 
 To install the Sinatra Turntable app generator, use the text editor of your choice to open your bash  profile (typically located in `~/.bash_profile`), and [add this snippet](https://gist.github.com/schmartmann/7384d6e8a73657152778dc4d0936f28b).
 
-  *NOTE*: You may need to reload your terminal before accessing the sinatra_turntable script.
+*NOTE*: You may need to reload your terminal before accessing the sinatra_turntable script.
 
 ## Running The Generator
 
@@ -37,7 +37,7 @@ Before completing, the generator will prompt you:`Would you like to set up Activ
 
 This will result in the following structure:
 
-![Sinatra Turntable Directory Structure](tree.png =100x)
+![Sinatra Turntable Directory Structure](tree.png)
 
 Once the generator finishes, test your app by running `$ rackup`. You should see the familiar Hello World! on `localhost:9292`.
 
