@@ -131,7 +131,7 @@ end
 Because this framework's base is Sinatra, we can take advantage of its powerful template rendering `erb` tags. Here's an example of how to render the example's list of dogs in the index view template:
 
 `views/index.erb`:
-```html
+```erb
 <div>
   <% @dogs.each do |dog| %>
     <ul>
