@@ -28,7 +28,7 @@ To install the Sinatra Turntable app generator, use the text editor of your choi
 
 To run the generator, use the bash command `sinatra_turntable`, which takes one parameter: your app’s name.
 
-Example:
+_Example_:
 `$ sinatra_turntable mans_best_friends`
 
 The generator will create a directory structure, and populate it with the files needed to run your app.
@@ -78,25 +78,26 @@ This generates a date-stamped migration file, within which you can define your t
 
 Our example migration file looks like this:
 `db/migrate/20170608222332_add_dogs_table.rb`:
+
 ```ruby
 class AddDogsTable < ActiveRecord::Migration
   def change
-      create_table :dogs do |t|
-            t.string :name
-                  t.string :breed
-                        t.integer :age
-                              t.boolean :is_good_boy
-                                  end
-                                    end
-                                    end
-                                    ```
+    create_table :dogs do |t|
+      t.string :name
+      t.string :breed
+      t.integer :age
+      t.boolean :is_good_boy
+    end
+  end
+end
+```
 ### Step 4: Running the Migration
 
-                                    Running `$ rake db:migrate` is the final step in setting up your database, and runs the migration file to make any additions or alternations to your database’s tables. Notice there is now a `schema.rb` file, that describes your tables, and lists the date of the most recent migration.
+Running `$ rake db:migrate` is the final step in setting up your database, and runs the migration file to make any additions or alternations to your database’s tables. Notice there is now a `schema.rb` file, that describes your tables, and lists the date of the most recent migration.
 
-                                    In our example, our migration file creates a `dogs` table, and our `models/dog.rb` file allows us to access it via the `Dog` object in our Sinatra app.
+In our example, our migration file creates a `dogs` table, and our `models/dog.rb` file allows us to access it via the `Dog` object in our Sinatra app.
 
-                                    If you want to have data pre-populated in your database, just add that data to `db/seeds.rb`, and run `rake db:seed` to seed your database.
+If you want to have data pre-populated in your database, just add that data to `db/seeds.rb`, and run `rake db:seed` to seed your database.
 
 ## Building A View
 
@@ -110,10 +111,10 @@ You should see a function block that describes your application’s root `/`:
 ```ruby
 get “/“ do
   erb :index
-  end
-  ```
+end
+```
 
-  Instead of   
+Instead of   
 
 ## Enabling APM Tracing
 
