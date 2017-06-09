@@ -107,7 +107,7 @@ Now that we have a server and a database, let’s build an index view to make su
 
 `Server.rb` controls how your server responds to HTTP requests, and is where your routes live.
 
-You should see a function block that describes your application’s root `/`:
+You should see a function block that describes your application’s root path at `/`:
 
 `server.rb`:
 ```ruby
@@ -116,7 +116,31 @@ get “/“ do
 end
 ```
 
-Instead of   
+Add a new route that responds with data from your database.
+
+For our example app, we will add a `/dogs` route, and fetch a list of all the dogs in our database. 
+
+Example: 
+
+```ruby
+get "/dogs"
+  @dogs = Dog.all
+  erb :index
+end
+```
+Because this framework's base is Sinatra, we can take advantage of its powerful template rendering `erb` tags. Here's an example of how to render the example's list of dogs in the index view template:
+
+`views/index.erb`:
+```html
+<div>
+  <% @dogs.each do |dog| %>
+    <ul>
+      <li>Name: <%= dog.name%></li>
+      <li>Breed: <%= dog.breed%></li>
+      <li>Is A Good Boy? <%= dog.is_good_boy%></li>
+    </ul>
+</div>
+```
 
 ## Enabling APM Tracing
 
