@@ -20,7 +20,7 @@ With just a few commands, we can bootstrap a full web app with data-persistence.
 
 ## Installing Sinatra Turntable
 
-  To install the Sinatra Turntable app generator, use the text editor of your choice to open your bash  profile (typically located in `~/.bash_profile`), and add [this snippet](https://gist.github.com/schmartmann/7384d6e8a73657152778dc4d0936f28b).
+To install the Sinatra Turntable app generator, use the text editor of your choice to open your bash  profile (typically located in `~/.bash_profile`), and [add this snippet](https://gist.github.com/schmartmann/7384d6e8a73657152778dc4d0936f28b).
 
   *NOTE*: You may need to reload your terminal before accessing the sinatra_turntable script.
 
