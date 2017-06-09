@@ -1,6 +1,6 @@
 # Monitoring Sinatra Turntable with Datadog APM
 
-*Sinatra Turntable* is a framework that allows you to spin up a full-stack web app in just a few minutes, which can then seamlessly be integrated into Datadog’s APM service for performance monitoring.
+**Sinatra Turntable** is a framework that allows you to spin up a full-stack web app in just a few minutes, which can then seamlessly be integrated into Datadog’s APM service for performance monitoring.
 
 APM allows you to trace requests and template rendering across your Sinatra app, so you can have a fuller picture of its health.
 
