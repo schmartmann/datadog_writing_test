@@ -41,6 +41,8 @@ This will result in the following structure:
 
 Once the generator finishes, test your app by running `$ rackup`. You should see the familiar Hello World! on `localhost:9292`.
 
+![Hello World](hello_world_test.png)
+
 ## Setting Up Your Database
 
 Once created, we need to do some configure at least one table in our database. This process has four steps.
@@ -59,8 +61,8 @@ ActiveRecord needs a model file to interact with your tables in your database. A
 
 A directory for your model files already exists, so all you need to do is create a Ruby file in that directory whose file name corresponds to the singular form of your database’s table’s name. For our example, we will create a `dog.rb` inside the `models/` directory, since we’d like to have a `dogs` table in our database.
 
->>>SCREENSHOT?>>>
-models/dog.rb
+`models/dog.rb`:
+
 ```ruby
 class Dog < ActiveRecord::Base
 end
