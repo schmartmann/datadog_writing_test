@@ -157,3 +157,6 @@ end
 ```
 
 Finally, `rackup`, navigate to localhost:9292 in your browser, and you should see the tracer reporting data sent in your terminal. (If you don't want this feedback in the terminal, simply change your configuration block's debug to `false`.
+
+Your application's trace will be visibile through the [Datadog web app](https://app.datadoghq.com/apm).
+![APM trace]()
