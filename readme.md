@@ -1,8 +1,9 @@
 # Monitoring Sinatra Turntable with Datadog APM
 
-**Sinatra Turntable** is a framework that allows you to spin up a full-stack web app in just a few minutes, which can then seamlessly be integrated into Datadog’s APM service for performance monitoring.
+**Sinatra Turntable** is a framework that allows you to spin up a full-stack web app in just a few minutes, which integrates seamlessly with Datadog’s APM service for application performance monitoring.
 
 APM allows you to trace requests and template rendering across your Sinatra app, so you can have a fuller picture of its health.
+
 
 ## Sinatra Turntable
 
@@ -12,31 +13,30 @@ Sinatra Turntable is a full model-view-controller (MVC) framework with two princ
 - A PostgreSQL database with an **ActiveRecord** wrapper.
 
 
-Sinatra is a minimalist, web server written in Ruby that receives and inteprets HTTP requests, and renders HTML template views in response.
+Sinatra is a minimalist web server written in Ruby that receives and inteprets HTTP requests, and renders HTML template views in response.
 
-ActiveRecord is a Ruby gem that allows us to interface with our database in Ruby, rather than having to write in SQL, so you only need one language to work across your stack.
+ActiveRecord is a Ruby gem that allows us to interface with our database in Ruby, as opposed to writing in SQL inside our Ruby app, so you only need one language to work across your stack.
 
 With just a few commands, we can bootstrap a full web app with data-persistence.
 
 ## Installing Sinatra Turntable
 
-To install the Sinatra Turntable app generator, use the text editor of your choice to open your bash  profile (typically located in `~/.bash_profile`), and [add this snippet](https://gist.github.com/schmartmann/7384d6e8a73657152778dc4d0936f28b).
+To install the Sinatra Turntable app generator, use the text editor of your choice to open your bash  profile (typically located in `~/.bash_profile`), [add this snippet](https://gist.github.com/schmartmann/7384d6e8a73657152778dc4d0936f28b), and save.
 
 *NOTE*: You may need to reload your terminal before accessing the sinatra_turntable script.
 
 ## Running The Generator
 
-To run the generator, use the bash command `sinatra_turntable`, which takes one parameter: your app’s name.
+To run the generator, use the bash command `sinatra_turntable <your_apps_name>`.
 
 _Example_:
 `$ sinatra_turntable mans_best_friends`
 
 The generator will create a directory structure, and populate it with the files needed to run your app.
 
-Before completing, the generator will prompt you:`Would you like to set up ActiveRecord for this project? (y/n)`. If you don’t want ActiveRecord integration, simply reply `n`, and the generator will exit, leaving you with just a Sinatra app, and won’t attempt to configure a database. Otherwise, reply `y`, and the generator will create the directories and files needed to integrate a PostgreSQL database with your app.
+The generator will prompt:`Would you like to set up ActiveRecord for this project? (y/n)`. If you don’t want ActiveRecord integration, simply reply `n`, and the generator will exit, leaving you with just a Sinatra app. Otherwise, reply `y`, and the generator will create the directories and files needed to integrate a database.
 
-This will result in the following structure:
-
+Once complete, you should see this directory structure:
 ![Sinatra Turntable Directory Structure](tree.png)
 
 Once the generator finishes, test your app by running `$ rackup`. You should see the familiar Hello World! on `localhost:9292`.
@@ -45,23 +45,21 @@ Once the generator finishes, test your app by running `$ rackup`. You should see
 
 ## Setting Up Your Database
 
-Once created, we need to do some configure at least one table in our database. This process has four steps.
+Once created, we will want to set up at least one table in our database.
 
 ### Step 1: Creating the Database
 
-Our database hasn’t actually been created yet — we just configuration files that tell our app where to look for it.
+Our database hasn’t actually been created yet, so run `$ rake db:create` to instantiate it.
 
-To create our PostgreSQL database, run `$ rake db:create`.
-
-NOTE: for a list of all rake commands, run `rake -T` in your command line.
+*NOTE*: to list all rake commands, run `$ rake -T`.
 
 ### Step 2: Creating a Model File
 
-ActiveRecord needs a model file to interact with your tables in your database. A model simply defines how to interact with a collection of data, and groups together common methods. In our case, the model is a Ruby class. Its use here is identical to its use in a Ruby on Rails app.  
+ActiveRecord needs a model file to interact with your database tables. A model is a Ruby class, and defines how to interact with a collection of data. Its use here is identical to models in a Ruby on Rails app.  
 
-A directory for your model files already exists, so all you need to do is create a Ruby file in that directory whose file name corresponds to the singular form of your database’s table’s name. For our example, we will create a `dog.rb` inside the `models/` directory, since we’d like to have a `dogs` table in our database.
+Create a Ruby file in the `models` directory. The file name should correspond to the singular form of your database’s table’s name. For our example, we will create `dog.rb` inside the `models/` directory, since we want a `dogs` table.
 
-`models/dog.rb`:
+**models/dog.rb**:
 
 ```ruby
 class Dog < ActiveRecord::Base
@@ -69,17 +67,17 @@ end
 ```
 ### Step 3: Creating a Migration File
 
-Next, we will create a migration file that adds our table to the database.
+Next, create a migration file that adds our table to the database.
 
-Run `$ rake db:create_migration NAME=<snake_cased_name_of_your_migration>` and rake will automatically generate a migration file in `db/migrate`.
+Run `$ rake db:create_migration NAME=<migration_name>` and rake will automatically generate a migration file in `db/migrate`.
 
-In our example, that command would look something like this:
-`rake db:create_migration NAME=create_dogs_table`
+In our example, that command looks like this:
+`rake db:create_migration NAME=add_dogs_table`
 
 This generates a date-stamped migration file, within which you can define your table’s attributes.
 
 Our example migration file looks like this:
-`db/migrate/20170608222332_add_dogs_table.rb`:
+**db/migrate/20170608222332_add_dogs_table.rb**:
 
 ```ruby
 class AddDogsTable < ActiveRecord::Migration
@@ -95,13 +93,12 @@ end
 ```
 ### Step 4: Running the Migration
 
-Running `$ rake db:migrate` is the final step in setting up your database, and runs the migration file to make any additions or alternations to your database’s tables. Notice there is now a `schema.rb` file, that describes your tables, and lists the date of the most recent migration.
+Running `$ rake db:migrate`runs the migration file to make any additions or alternations to your database’s tables. Notice there is now a `schema.rb` file, that describes your tables, and lists the most recent migration's date.
 
 In our example, our migration file creates a `dogs` table, and our `models/dog.rb` file allows us to access it via the `Dog` object in our Sinatra app.
 
-If you want to have data pre-populated in your database, just add that data to `db/seeds.rb`, and run `rake db:seed` to seed your database.
+If you want your database pre-populated, add that data to `db/seeds.rb`, and run `rake db:seed` to seed your database.
 
-## Building A View
 
 Now that we have a server and a database, let’s build an index view to make sure the two are communicating correctly.
 
@@ -144,16 +141,19 @@ Because this framework's base is Sinatra, we can take advantage of its powerful 
 
 ## Enabling APM Tracing
 
-Datadog exercise:
+To enable APM tracing, first ensure you have a [Datadog account](https://www.datadoghq.com/), and install the [Datadog Agent](https://app.datadoghq.com/account/settings#agent). 
 
-require 'ddtrace'
-require 'ddtrace/contrib/sinatra/tracer'
+First, add `gem ddtrace` to your Gemfile, and then run `$ bundle install` to install the gem.
 
-^^— belong in the `Rakefile`, rather than inside of `server.rb`
+Then add these lines to the bottom of the configuration block at the top of `server.rb`:
+`require 'ddtrace'
+require 'ddtrace/contrib/sinatra/tracer'`
 
-place this:
-```configure do
+And place this underneath the Sinatra/Reloader configuration block:
+```ruby
+configure do
   settings.datadog_tracer.configure default_service: 'my-app', debug: true
-  end
-  ```
-  inside of Rakefile as well.
+end
+```
+
+Finally, `rackup`, navigate to localhost:9292 in your browser, and you should see the tracer reporting data sent in your terminal. (If you don't want this feedback in the terminal, simply change your configuration block's debug to `false`.
