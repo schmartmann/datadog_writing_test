@@ -7,7 +7,7 @@ APM allows you to trace requests and template rendering across your Sinatra app,
 
 ## Sinatra Turntable
 
-Sinatra Turntable is a full model-view-controller (MVC) framework with two principal components:
+Sinatra Turntable is a full-stack framework with two principal components:
 
 - A **Sinatra** web server.
 - A PostgreSQL database with an **ActiveRecord** wrapper.
@@ -102,11 +102,13 @@ If you want your database pre-populated, add that data to `db/seeds.rb`, and run
 
 Now that we have a server and a database, let’s build an index view to make sure the two are communicating correctly.
 
-`Server.rb` controls how your server responds to HTTP requests, and is where your routes live.
+## Templating Views
+
+The `server.rb`file controls how your server responds to HTTP requests, and is where your routes live.
 
 You should see a function block that describes your application’s root path at `/`:
 
-`server.rb`:
+**server.rb**:
 ```ruby
 get “/“ do
   erb :index
@@ -119,6 +121,7 @@ For our example app, we will add a `/dogs` route, and fetch a list of all the do
 
 Example: 
 
+
 ```ruby
 get "/dogs"
   @dogs = Dog.all
@@ -127,7 +130,7 @@ end
 ```
 Because this framework's base is Sinatra, we can take advantage of its powerful template rendering `erb` tags. Here's an example of how to render the example's list of dogs in the index view template:
 
-`views/index.erb`:
+**views/index.erb**:
 ```erb
 <div>
   <% @dogs.each do |dog| %>
