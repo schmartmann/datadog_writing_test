@@ -101,7 +101,7 @@ If you want your database pre-populated, add that data to `db/seeds.rb`, and run
 At this point, you should be able to access your database in `server.rb`, like so:
 
 **server.rb**:
-```
+```ruby
 get '/' do
   @dogs = Dog.all
   erb :index
