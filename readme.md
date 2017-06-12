@@ -103,11 +103,13 @@ Now that we have a server and a database, let’s build an index view to make su
 
 ## Enabling APM Tracing
 
+Datadog's APM agent traces requests from request to response across your app. This metadata allows a top-level view of your app's health, and helps you understand how user requests effect your app's architecture.
+
 To enable APM tracing, first ensure you have a [Datadog account](https://www.datadoghq.com/), and install the [Datadog Agent](https://app.datadoghq.com/account/settings#agent). 
 
-First, add `gem ddtrace` to your Gemfile, and then run `$ bundle install` to install the gem.
+Next, add `gem ddtrace` to your Gemfile, and run `$ bundle install` to install the gem.
 
-Then add these lines to the bottom of the configuration block at the top of `server.rb`:
+In `server.rb`, add these lines under `require 'sinatra/reloader'`: 
 `require 'ddtrace'
 require 'ddtrace/contrib/sinatra/tracer'`
 
@@ -118,10 +120,21 @@ configure do
 end
 ```
 
-Finally, `rackup`, navigate to localhost:9292 in your browser, and you should see the tracer reporting data sent in your terminal. (If you don't want this feedback in the terminal, simply change your configuration block's debug to `false`.
+Finally, `rackup`, navigate to localhost:9292 in your browser, and you should see the tracer reporting data in your terminal.
 
 Your tracer's terminal output will provde immediate feedback on requests flowing across your app:
 <img src="tracer_terminal_output.png" alt="Tracer Output in Terminal" style="max-width: 25%; height: auto"/>
+(If you don't want this feedback, change `debug:true` to `false`.)
 
-Your application's trace will be visibile through the [Datadog web app](https://app.datadoghq.com/apm).
+
+
+Your tracer gives you access to information such as:
+  
+  - Which templates are being rendered
+  - Duration of rendering request 
+  - HTTP request status codes
+
+Your trace will be also visibile through the [Datadog web app](https://app.datadoghq.com/apm).
 ![APM trace]()
+
+k
