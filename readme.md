@@ -37,6 +37,7 @@ The generator will create a directory structure, and populate it with the files 
 The generator will prompt:`Would you like to set up ActiveRecord for this project? (y/n)`. If you don’t want ActiveRecord integration, simply reply `n`, and the generator will exit, leaving you with just a Sinatra app. Otherwise, reply `y`, and the generator will create the directories and files needed to integrate a database.
 
 Once complete, you should see this directory structure:
+
 ![Sinatra Turntable Directory Structure](tree.png)
 
 Once the generator finishes, test your app by running `$ rackup`. You should see the familiar Hello World! on `localhost:9292`.
