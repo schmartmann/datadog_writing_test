@@ -23,13 +23,13 @@ With just a few commands, we can bootstrap a full web app with data-persistence.
 
 To install the Sinatra Turntable app generator, use the text editor of your choice to open your bash  profile (typically located in `~/.bash_profile`), [add this snippet](https://gist.github.com/schmartmann/7384d6e8a73657152778dc4d0936f28b), and save.
 
-*NOTE*: You may need to reload your terminal before accessing the sinatra_turntable script.
+**NOTE**: You may need to reload your terminal before accessing the sinatra_turntable script.
 
 ## Running The Generator
 
 To run the generator, use the bash command `sinatra_turntable <your_apps_name>`.
 
-_Example_:
+**Example**:
 `$ sinatra_turntable mans_best_friends`
 
 The generator will create a directory structure, and populate it with the files needed to run your app.
@@ -51,7 +51,7 @@ Once created, we will want to set up at least one table in our database.
 
 Our database hasn’t actually been created yet, so run `$ rake db:create` to instantiate it.
 
-*NOTE*: to list all rake commands, run `$ rake -T`.
+**NOTE**: to list all rake commands, run `$ rake -T`.
 
 ### Step 2: Creating a Model File
 
@@ -65,6 +65,7 @@ Create a Ruby file in the `models` directory. The file name should correspond to
 class Dog < ActiveRecord::Base
 end
 ```
+
 ### Step 3: Creating a Migration File
 
 Next, create a migration file that adds our table to the database.
@@ -97,7 +98,7 @@ Running `$ rake db:migrate`runs the migration file to make any additions or alte
 
 In our example, our migration file creates a `dogs` table, and our `models/dog.rb` file allows us to access it via the `Dog` object in our Sinatra app.
 
-If you want your database pre-populated, add that data to `db/seeds.rb`, and run `rake db:seed` to seed your database.
+If you want your database pre-populated, add that data to `db/seeds.rb`, and run `$ rake db:seed` to seed your database.
 
 Now that we have a server and a database, let’s build an index view to make sure the two are communicating correctly.
 
@@ -120,7 +121,7 @@ configure do
 end
 ```
 
-Finally, `rackup`, navigate to localhost:9292 in your browser, and you should see the tracer reporting data in your terminal.
+Finally, `$ rackup`, navigate to localhost:9292 in your browser, and you should see the tracer reporting data in your terminal.
 
 Your tracer's terminal output will provde immediate feedback on requests flowing across your app:
 <img src="tracer_terminal_output.png" alt="Tracer Output in Terminal" style="max-width: 25%; height: auto"/>
@@ -136,5 +137,3 @@ Your tracer gives you access to information such as:
 
 Your trace will be also visibile through the [Datadog web app](https://app.datadoghq.com/apm).
 ![APM trace]()
-
-k
