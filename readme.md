@@ -15,7 +15,7 @@ Sinatra Turntable is a full-stack framework with two principal components:
 
 Sinatra is a minimalist web server written in Ruby that receives and inteprets HTTP requests, and renders HTML template views in response.
 
-ActiveRecord is a Ruby gem that allows us to interface with our database in Ruby, as opposed to writing in SQL inside our Ruby app, so you only need one language to work across your stack.
+[ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html) is a Ruby gem that allows us to interface with our database in Ruby, as opposed to writing in SQL inside our Ruby app, so you only need one language to work across your stack.
 
 With just a few commands, we can bootstrap a full web app with data-persistence.
 
