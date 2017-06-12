@@ -12,8 +12,7 @@ Sinatra Turntable is a full-stack framework with two principal components:
 - A **Sinatra** web server.
 - A PostgreSQL database with an **ActiveRecord** wrapper.
 
-
-Sinatra is a minimalist web server written in Ruby that receives and inteprets HTTP requests, and renders HTML template views in response.
+[Sinatra](http://sinatrarb.com) is a minimalist web server written in Ruby that receives and inteprets HTTP requests, and renders HTML template views in response.
 
 [ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html) is a Ruby gem that allows us to interface with our database in Ruby, as opposed to writing in SQL inside our Ruby app, so you only need one language to work across your stack.
 
