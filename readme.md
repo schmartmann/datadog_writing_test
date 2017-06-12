@@ -78,8 +78,8 @@ In our example, that command looks like this:
 This generates a date-stamped migration file, within which you can define your table’s attributes.
 
 Our example migration file looks like this:
-**db/migrate/20170608222332_add_dogs_table.rb**:
 
+**db/migrate/20170608222332_add_dogs_table.rb**:
 ```ruby
 class AddDogsTable < ActiveRecord::Migration
   def change
