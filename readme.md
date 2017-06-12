@@ -152,7 +152,7 @@ Then add these lines to the bottom of the configuration block at the top of `ser
 `require 'ddtrace'
 require 'ddtrace/contrib/sinatra/tracer'`
 
-And place this underneath the Sinatra/Reloader configuration block:
+Include this block underneath `configure :development do` to customize the tracer's configuration:
 ```ruby
 configure do
   settings.datadog_tracer.configure default_service: 'my-app', debug: true
@@ -160,6 +160,9 @@ end
 ```
 
 Finally, `rackup`, navigate to localhost:9292 in your browser, and you should see the tracer reporting data sent in your terminal. (If you don't want this feedback in the terminal, simply change your configuration block's debug to `false`.
+
+Your tracer's terminal output will provde immediate feedback on requests flowing across your app:
+<img src="tracer_terminal_output.png" alt="Tracer Output in Terminal" style="width: 25%; height: auto"/>
 
 Your application's trace will be visibile through the [Datadog web app](https://app.datadoghq.com/apm).
 ![APM trace]()
