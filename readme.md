@@ -53,7 +53,7 @@ Our database hasn’t actually been created yet, so run `$ rake db:create` to in
 
 ### Step 2: Creating a Model File
 
-ActiveRecord needs a model file to interact with your database tables. A model maps a table from our database to an object we can perform operations on.  Its use here is identical to models in a Ruby on Rails app.  
+ActiveRecord needs a model file to interact with your database tables. A model maps a table from our database to an object we can perform operations on.
 
 Create a Ruby file in the `models` directory. The file name should correspond to the singular form of your database’s table’s name. For our example, we will create `dog.rb` inside the `models/` directory, since we want a `dogs` table.
 
@@ -66,7 +66,7 @@ end
 
 ### Step 3: Creating a Migration File
 
-Next, we will create a migration file, to add our new table to our database.
+Next, we will create a migration file to add our new table to our database.
 
 Run `$ rake db:create_migration NAME=<migration_name>`, and rake will automatically generate a migration file in `db/migrate`.
 
@@ -92,11 +92,13 @@ end
 ```
 ### Step 4: Running the Migration
 
-Running `$ rake db:migrate`runs the migration file to make any additions or alternations to your database’s tables. Notice there is now a `schema.rb` file, that describes your tables, and lists the most recent migration's date.
+Running `$ rake db:migrate`runs the migration file to make any additions or alternations to your database’s tables. 
 
-In our example, our migration file creates a `dogs` table, and our `models/dog.rb` file allows us to access it via the `Dog` object in our Sinatra app.
+Notice there is now a `schema.rb` file, that describes your tables, and lists the most recent migration's date.
 
-If you want your database pre-populated, add that data to `db/seeds.rb`, and run `$ rake db:seed` to seed your database.
+In our example, our migration file creates a `dogs` table, and our `models/dog.rb` file allows us to access it via the `Dog` object.
+
+To pre-populate your database, add that data to `db/seeds.rb`, and run `$ rake db:seed` to seed your it.
 
 At this point, you should be able to access your database in `server.rb`, like so:
 
@@ -142,4 +144,3 @@ Your tracer gives you access to information such as:
   - HTTP request status codes
 
 Your trace will be also visibile through the [Datadog web app](https://app.datadoghq.com/apm).
-![APM trace]()
