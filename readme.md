@@ -14,38 +14,36 @@ Sinatra Turntable is a full-stack framework with two principal components:
 
 [Sinatra](http://sinatrarb.com) is a minimalist web server written in Ruby that receives and inteprets HTTP requests, and renders HTML template views in response.
 
-[ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html) is a Ruby gem that allows us to interface with our database in Ruby, as opposed to writing in SQL inside our Ruby app, so you only need one language to work across your stack.
+[ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html) is an interface that allows us to interact with our database in Ruby, so you only need one language to work across your stack.
 
-With just a few commands, we can bootstrap a full web app with data-persistence.
+With a few commands, we can bootstrap a full web app with data-persistence.
 
 ## Installing Sinatra Turntable
 
-To install the Sinatra Turntable app generator, use the text editor of your choice to open your bash  profile (typically located in `~/.bash_profile`), [add this snippet](https://gist.github.com/schmartmann/7384d6e8a73657152778dc4d0936f28b), and save.
-
-**NOTE**: You may need to reload your terminal before accessing the sinatra_turntable script.
+To install Sinatra Turntable, open your bash profile (typically located in `~/.bash_profile`), [add this snippet](https://gist.github.com/schmartmann/7384d6e8a73657152778dc4d0936f28b), save, and reload your terminal.
 
 ## Running The Generator
 
-To run the generator, use the bash command `sinatra_turntable <your_apps_name>`.
+To run the generator, enter `$ sinatra_turntable <your_apps_name>`.
 
 **Example**:
 `$ sinatra_turntable mans_best_friends`
 
 The generator will create a directory structure, and populate it with the files needed to run your app.
 
-The generator will prompt:`Would you like to set up ActiveRecord for this project? (y/n)`. If you don’t want ActiveRecord integration, simply reply `n`, and the generator will exit, leaving you with just a Sinatra app. Otherwise, reply `y`, and the generator will create the directories and files needed to integrate a database.
+It will prompt: `Would you like to set up ActiveRecord for this project? (y/n)`. If you don’t want ActiveRecord integration, simply reply `n`, and the generator will exit, leaving you with just a Sinatra app. Otherwise, reply `y`, and the generator will create the directories and files needed to integrate a database.
 
-Once complete, you should see this directory structure:
+Once the generator finishes, you should see this file structure:
 
 ![Sinatra Turntable Directory Structure](tree.png)
 
-Once the generator finishes, test your app by running `$ rackup`. You should see the familiar Hello World! on `localhost:9292`.
+Test your app by running `$ rackup`. You should see the familiar Hello World! on http://localhost:9292.
 
 ![Hello World](hello_world_test.png)
 
 ## Setting Up Your Database
 
-Once created, we will want to set up at least one table in our database.
+We can set up our database in four, short steps.
 
 ### Step 1: Creating the Database
 
@@ -55,7 +53,7 @@ Our database hasn’t actually been created yet, so run `$ rake db:create` to in
 
 ### Step 2: Creating a Model File
 
-ActiveRecord needs a model file to interact with your database tables. A model is a Ruby class, and defines how to interact with a collection of data. Its use here is identical to models in a Ruby on Rails app.  
+ActiveRecord needs a model file to interact with your database tables. A model maps a table from our database to an object we can perform operations on.  Its use here is identical to models in a Ruby on Rails app.  
 
 Create a Ruby file in the `models` directory. The file name should correspond to the singular form of your database’s table’s name. For our example, we will create `dog.rb` inside the `models/` directory, since we want a `dogs` table.
 
@@ -68,9 +66,9 @@ end
 
 ### Step 3: Creating a Migration File
 
-Next, create a migration file that adds our table to the database.
+Next, we will create a migration file, to add our new table to our database.
 
-Run `$ rake db:create_migration NAME=<migration_name>` and rake will automatically generate a migration file in `db/migrate`.
+Run `$ rake db:create_migration NAME=<migration_name>`, and rake will automatically generate a migration file in `db/migrate`.
 
 In our example, that command looks like this:
 `rake db:create_migration NAME=add_dogs_table`
@@ -100,7 +98,15 @@ In our example, our migration file creates a `dogs` table, and our `models/dog.r
 
 If you want your database pre-populated, add that data to `db/seeds.rb`, and run `$ rake db:seed` to seed your database.
 
-Now that we have a server and a database, let’s build an index view to make sure the two are communicating correctly.
+At this point, you should be able to access your database in `server.rb`, like so:
+
+**server.rb**:
+```
+get '/' do
+  @dogs = Dog.all
+  erb :index
+end
+```
 
 ## Enabling APM Tracing
 
