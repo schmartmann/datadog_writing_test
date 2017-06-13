@@ -144,4 +144,5 @@ Your tracer gives you access to information such as:
   - HTTP request status codes
 
 Your trace will be also visibile through the [Datadog web app](https://app.datadoghq.com/apm).
+
 ![APM Heatmap](apm_trace.png)
