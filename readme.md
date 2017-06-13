@@ -2,7 +2,7 @@
 
 **Sinatra Turntable** is a framework that allows you to spin up a full-stack web app in minutes, which integrates seamlessly with Datadog’s APM service for application performance monitoring.
 
-APM allows you to trace requests and template rendering across your Sinatra app, so you can have a fuller picture of its health.
+APM allows you to trace requests and template rendering across a Sinatra app, so you can have a fuller picture of its health.
 
 
 ## Sinatra Turntable
@@ -14,9 +14,9 @@ Sinatra Turntable is a full-stack framework with two principal components:
 
 [Sinatra](http://sinatrarb.com) is a minimalist web server written in Ruby that receives and inteprets HTTP requests, and renders HTML template views in response.
 
-[ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html) is an interface that allows us to interact with our database in Ruby, so you only need one language to work across your stack.
+[ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html) is an interface that allows you to interact with your database in Ruby, so you only need one language to work across your stack.
 
-With a few commands, we can bootstrap a full web app with data-persistence.
+With a few commands, you can bootstrap a full web app with data-persistence.
 
 ## Installing Sinatra Turntable
 
@@ -43,19 +43,19 @@ Test your app by running `$ rackup`. You should see the familiar Hello World! on
 
 ## Setting Up Your Database
 
-We can set up our database in four, short steps.
+You can set up a database in four, short steps.
 
 ### Step 1: Creating the Database
 
-Our database hasn’t actually been created yet, so run `$ rake db:create` to instantiate it.
+Your database hasn’t actually been created yet, so run `$ rake db:create` to instantiate it.
 
 **NOTE**: to list all rake commands, run `$ rake -T`.
 
 ### Step 2: Creating a Model File
 
-ActiveRecord needs a model file to interact with your database tables. A model maps a table from our database to an object we can perform operations on.
+ActiveRecord needs a model file to interact with your database tables. A model maps a table from our database to an object you can perform operations on.
 
-Create a Ruby file in the `models` directory. The file name should correspond to the singular form of your database’s table’s name. For our example, we will create `dog.rb` inside the `models/` directory, since we want a `dogs` table.
+Create a Ruby file in the `models` directory. The file name should correspond to the singular form of your database’s table’s name. For our example, you would create `dog.rb` inside the `models/` directory to correspond to a `dogs` table.
 
 **models/dog.rb**:
 
@@ -66,16 +66,16 @@ end
 
 ### Step 3: Creating a Migration File
 
-Next, we will create a migration file to add our new table to our database.
+Next, create a migration file to add your table to the database.
 
 Run `$ rake db:create_migration NAME=<migration_name>`, and rake will automatically generate a migration file in `db/migrate`.
 
-In our example, that command looks like this:
+In the example, that command looks like this:
 `rake db:create_migration NAME=add_dogs_table`
 
 This generates a date-stamped migration file, within which you can define your table’s attributes.
 
-Our example migration file looks like this:
+The example migration file looks like this:
 
 **db/migrate/20170608222332_add_dogs_table.rb**:
 ```ruby
@@ -96,9 +96,9 @@ Running `$ rake db:migrate`runs the migration file to make any additions or alte
 
 Notice there is now a `schema.rb` file, that describes your tables, and lists the most recent migration's date.
 
-In our example, our migration file creates a `dogs` table, and our `models/dog.rb` file allows us to access it via the `Dog` object.
+In the example, the migration file creates a `dogs` table, and the `models/dog.rb` file connects it through the `Dog` object.
 
-To pre-populate your database, add that data to `db/seeds.rb`, and run `$ rake db:seed` to seed your it.
+To pre-populate your database, add that data to `db/seeds.rb`, and run `$ rake db:seed` to seed it.
 
 At this point, you should be able to access your database in `server.rb`, like so:
 
@@ -114,7 +114,7 @@ end
 
 Datadog's APM agent traces requests from request to response across your app. This metadata allows a top-level view of your app's health, and helps you understand how user requests effect your app's architecture.
 
-To enable APM tracing, first ensure you have a [Datadog account](https://www.datadoghq.com/), and install the [Datadog Agent](https://app.datadoghq.com/account/settings#agent). 
+To enable APM tracing, ensure you have a [Datadog account](https://www.datadoghq.com/), and install the [Datadog Agent](https://app.datadoghq.com/account/settings#agent). 
 
 Next, add `gem ddtrace` to your Gemfile, and run `$ bundle install` to install the gem.
 
@@ -144,3 +144,4 @@ Your tracer gives you access to information such as:
   - HTTP request status codes
 
 Your trace will be also visibile through the [Datadog web app](https://app.datadoghq.com/apm).
+![APM Heatmap](apm_trace.png)
