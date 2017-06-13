@@ -1,6 +1,6 @@
 # Monitoring Sinatra Turntable with Datadog APM
 
-**Sinatra Turntable** is a framework that allows you to spin up a full-stack web app in minutes, which integrates seamlessly with Datadog’s APM service for application performance monitoring.
+**Sinatra Turntable** is a framework that allows you to spin up a full-stack web app in minutes, and integrates seamlessly with Datadog’s APM service for application performance monitoring.
 
 APM allows you to trace requests and template rendering across a Sinatra app, so you can have a fuller picture of its health.
 
@@ -43,13 +43,13 @@ Test your app by running `$ rackup`. You should see the familiar Hello World! on
 
 ## Setting Up Your Database
 
-You can set up a database in four, short steps.
+You can set up a database in four short steps.
 
 ### Step 1: Creating the Database
 
 Your database hasn’t actually been created yet, so run `$ rake db:create` to instantiate it.
 
-**NOTE**: to list all rake commands, run `$ rake -T`.
+**NOTE**: For a list of all rake commands, run `$ rake -T`.
 
 ### Step 2: Creating a Model File
 
@@ -90,11 +90,12 @@ class AddDogsTable < ActiveRecord::Migration
   end
 end
 ```
+
 ### Step 4: Running the Migration
 
 Running `$ rake db:migrate`runs the migration file to make any additions or alternations to your database’s tables. 
 
-Notice there is now a `schema.rb` file, that describes your tables, and lists the most recent migration's date.
+Notice there is now a `schema.rb` file, which describes your tables, and lists the most recent migration's date.
 
 In the example, the migration file creates a `dogs` table, and the `models/dog.rb` file connects it through the `Dog` object.
 
@@ -129,9 +130,9 @@ configure do
 end
 ```
 
-Finally, `$ rackup`, navigate to localhost:9292 in your browser, and you should see the tracer reporting data in your terminal.
+Finally, `$ rackup`, navigate to http://localhost:9292 in your browser, and you should see the tracer reporting data in your terminal.
 
-Your tracer's terminal output will provide immediate feedback on requests flowing across your app:
+Your tracer's terminal output shows requests flowing through your app:
 <img src="tracer_terminal_output.png" alt="Tracer Output in Terminal" style="max-width: 25%; height: auto"/>
 (If you don't want this feedback, change `debug:true` to `false`.)
 
