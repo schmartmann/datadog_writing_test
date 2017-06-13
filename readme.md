@@ -12,11 +12,11 @@ Sinatra Turntable is a full-stack framework with two principal components:
 - A **Sinatra** web server.
 - A PostgreSQL database with an **ActiveRecord** wrapper.
 
-[Sinatra](http://sinatrarb.com) is a minimalist web server written in Ruby that receives and inteprets HTTP requests, and renders HTML template views in response.
+[Sinatra](http://sinatrarb.com) is a minimalist web server written in Ruby that receives HTTP requests, interprets them, and renders HTML template views in response.
 
 [ActiveRecord](http://guides.rubyonrails.org/active_record_basics.html) is an interface that allows you to interact with your database in Ruby, so you only need one language to work across your stack.
 
-With a few commands, you can bootstrap a full web app with data-persistence.
+With a few commands, you can bootstrap a full web app with persistent data.
 
 ## Installing Sinatra Turntable
 
@@ -131,7 +131,7 @@ end
 
 Finally, `$ rackup`, navigate to localhost:9292 in your browser, and you should see the tracer reporting data in your terminal.
 
-Your tracer's terminal output will provde immediate feedback on requests flowing across your app:
+Your tracer's terminal output will provide immediate feedback on requests flowing across your app:
 <img src="tracer_terminal_output.png" alt="Tracer Output in Terminal" style="max-width: 25%; height: auto"/>
 (If you don't want this feedback, change `debug:true` to `false`.)
 
@@ -143,6 +143,6 @@ Your tracer gives you access to information such as:
   - Duration of rendering request 
   - HTTP request status codes
 
-Your trace will be also visibile through the [Datadog web app](https://app.datadoghq.com/apm).
+Your trace will be also visible through the [Datadog web app](https://app.datadoghq.com/apm).
 
 ![APM Heatmap](apm_trace.png)
